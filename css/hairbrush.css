@@ -1,0 +1,293 @@
+@charset "UTF-8";
+
+@import url("../css/reset.css");
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Playfair Display", serif;
+  line-height: normal;
+}
+
+.wrapper {
+  min-height: 100%;
+  overflow: clip;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper > main {
+  flex-grow: 1;
+}
+
+[class*="__container"] {
+  margin: 0 auto;
+}
+
+.header__container {
+   max-width: 1130px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding-top: 29px;
+   padding-bottom: 117px;
+}
+ 
+.header__logo {
+   font-size: clamp(24px, 2.3vw, 36px);
+}
+ 
+.header a {
+   transition: opacity 0.2s ease;
+}
+  
+.header a:hover {
+   opacity: 0.75;
+}
+ 
+.icon-menu {
+   display: none;
+}
+ 
+.menu__list {
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   column-gap: 43px;
+}
+ 
+.menu__link {
+   font-size: 14px;
+   transition: color 0.2s ease;
+}
+ 
+.menu__link:hover {
+   text-decoration: underline;
+}
+
+/* hero-hairbrush */
+.hero-hairbrush img{
+   width: 100%;
+}
+
+/* combs-info */
+.combs-info {
+   margin-top: 37px;
+}
+
+.combs-info__container {
+   max-width: 895px;
+}
+
+.combs-info__title {
+  text-align: center;
+  font-size: clamp(20px, 4vw, 28px);
+  margin-bottom: 76px;
+  font-family: "Playfair Display", serif;  
+}
+
+.combs-info__content {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+}
+
+.combs-info__content p + p {
+  margin-top: 32px;
+}
+
+/* brushes */
+.brushes {
+   margin: 69px 0 259px;
+}
+
+.brushes__container {
+   max-width: 895px;
+}
+/* brush-types */
+.brush-types {
+  margin-top: 94px;
+}
+
+.brush-types__title {
+  font-size: clamp(20px, 3vw, 25px);
+  margin-bottom: 28px;
+  font-family: "Playfair Display", serif;  
+}
+
+.brush-types__subtitle {
+  font-size: clamp(20px, 2.5vw, 22px);
+  font-family: "Roboto", sans-serif;
+}
+
+
+.brush-types__image-wrap {
+   display: flex;
+   justify-content: center;
+   margin-bottom: 64px;
+}
+
+.brush__image {
+   margin-top: 64px;
+} 
+.brush-types__image {
+  width: 100%;
+  max-width: 460px;
+}
+
+.brush-types__content {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+}
+
+.brush-types__content h3 {
+   font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  margin: 26px 0;
+}
+
+.brush-types__content p + p {
+  margin-top: 26px;
+}
+
+/* footer */
+.footer {
+  background-color: #2f2f2f;
+  color: #ffffff;
+  padding-top: 45px;
+  padding-bottom: 28px;
+}
+
+.footer__container {
+  max-width: 1000px;
+}
+
+.footer__top {
+  border-top: 1px solid #cdcaca;
+  width: 1000px;
+  max-width: 100%;
+  margin-inline: auto;
+  padding-top: 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.footer__column {
+  text-align: center;
+  padding-inline: 24px;
+}
+
+.footer__column:not(:first-child) {
+  border-left: 1px solid #a09f9f;
+}
+
+.footer__title {
+  font-size: 18px;
+  margin-top: 7px;
+  margin-bottom: 25px;
+}
+
+.footer__list {
+  font-size: 14px;
+}
+
+.footer__list li + li {
+  margin-top: 20px;
+  margin-bottom: 34px;
+}
+
+.footer__address {
+  margin-bottom: 19px;
+  font-size: 14px;
+}
+
+.footer__phone {
+  display: inline-block;
+  margin-bottom: 60px;
+  font-size: 14px;
+}
+
+.footer__cta {
+  font-size: 18px;
+}
+
+.footer__email {
+  display: inline-block;
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+
+.footer__bottom {
+  border-top: 1px solid #a09f9f;
+  margin-top: 33px;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__logo {
+  font-size: clamp(20px, 3.2vw, 24px);
+}
+
+.footer__copy {
+  font-size: 13px;
+}
+
+.footer a {
+  transition: opacity 0.2s ease;
+}
+
+.footer a:hover {
+  opacity: 0.75;
+}
+
+@media (max-width: 991.98px) {
+  [class*="__container"] {
+    padding-inline: 16px;
+  }
+
+  .header__container {
+    padding-bottom: 40px;
+  }
+
+  .combs-info {
+    padding: 34px 0;
+  }
+
+  .combs-info__title {
+    margin-bottom: 28px;
+  }
+
+  .combs-info__content {
+    font-size: 24px;
+  }
+
+  .brush-types {
+    padding: 30px 0 50px;
+  }
+
+  .brush-types__subtitle {
+    margin-bottom: 22px;
+  }
+
+  .brush-types__content,
+  .brush-types__content h3 {
+    font-size: 24px;
+  }
+
+  .footer__top {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+
+  .footer__column:not(:first-child) {
+    border-left: none;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
