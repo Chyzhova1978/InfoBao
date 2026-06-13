@@ -59,13 +59,111 @@ function initBurgerMenu() {
   const menuButton = document.querySelector(".icon-menu")
   const menu = document.querySelector(".menu")
   const overlay = document.querySelector(".menu-overlay")
+  const headerBody = document.querySelector(".header__body")
+  const headerContainer = document.querySelector(".header__container")
+  const menuHome = headerBody || headerContainer
   if (!menuButton || !menu) return
 
+  if (overlay && overlay.parentElement !== document.body) {
+    document.body.append(overlay)
+  }
+
+  let resizeTimer = null
+  let isClosing = false
+
+  const resetMobileMenuLayout = () => {
+    menu.style.removeProperty("height")
+    menu.style.removeProperty("max-height")
+    menu.style.removeProperty("padding-top")
+    menu.style.removeProperty("opacity")
+    menu.style.removeProperty("overflow")
+
+    if (overlay) {
+      overlay.style.removeProperty("height")
+      overlay.style.removeProperty("max-height")
+    }
+  }
+
+  const placeMenu = () => {
+    if (window.innerWidth <= 767) {
+      if (menu.parentElement !== document.body) {
+        document.body.append(menu)
+      }
+      return
+    }
+
+    document.body.classList.remove("menu-open")
+    isClosing = false
+    resetMobileMenuLayout()
+
+    if (menuHome && menu.parentElement !== menuHome) {
+      menuHome.append(menu)
+    }
+  }
+
+  const updateMobileMenuLayout = () => {
+    if (window.innerWidth > 767) return
+
+    const intro = document.querySelector(".intro")
+    const header = document.querySelector(".header")
+    const headerHeight = header ? header.offsetHeight : 72
+    const panelHeight = intro
+      ? intro.offsetHeight
+      : Math.min(window.innerHeight, headerHeight + 420)
+
+    menu.style.height = `${panelHeight}px`
+    menu.style.maxHeight = `${panelHeight}px`
+    menu.style.paddingTop = `${Math.max(headerHeight - 32, 32)}px`
+
+    if (overlay) {
+      overlay.style.height = `${panelHeight}px`
+      overlay.style.maxHeight = `${panelHeight}px`
+    }
+  }
+
+  const openMenu = () => {
+    if (isClosing || window.innerWidth > 767) return
+
+    placeMenu()
+    updateMobileMenuLayout()
+    requestAnimationFrame(() => {
+      document.body.classList.add("menu-open")
+      menuButton.setAttribute("aria-expanded", "true")
+      menuButton.setAttribute("aria-label", "Close menu")
+      if (overlay) overlay.setAttribute("aria-hidden", "false")
+    })
+  }
+
+  const closeMenu = () => {
+    if (!document.body.classList.contains("menu-open") || isClosing) return
+
+    isClosing = true
+    menuButton.setAttribute("aria-expanded", "false")
+    menuButton.setAttribute("aria-label", "Open menu")
+    if (overlay) overlay.setAttribute("aria-hidden", "true")
+
+    document.body.classList.remove("menu-open")
+    menu.style.maxHeight = "0"
+    menu.style.paddingTop = "0"
+
+    if (overlay) {
+      overlay.style.maxHeight = "0"
+    }
+
+    const onCloseEnd = (event) => {
+      if (event.target !== menu) return
+
+      isClosing = false
+      resetMobileMenuLayout()
+      menu.removeEventListener("transitionend", onCloseEnd)
+    }
+
+    menu.addEventListener("transitionend", onCloseEnd)
+  }
+
   const setMenuOpen = (isOpen) => {
-    document.body.classList.toggle("menu-open", isOpen)
-    menuButton.setAttribute("aria-expanded", String(isOpen))
-    menuButton.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu")
-    if (overlay) overlay.setAttribute("aria-hidden", String(!isOpen))
+    if (isOpen) openMenu()
+    else closeMenu()
   }
 
   menuButton.addEventListener("click", () => {
@@ -81,12 +179,21 @@ function initBurgerMenu() {
   })
 
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 767) setMenuOpen(false)
+    clearTimeout(resizeTimer)
+    resizeTimer = setTimeout(() => {
+      placeMenu()
+
+      if (window.innerWidth <= 767 && document.body.classList.contains("menu-open")) {
+        updateMobileMenuLayout()
+      }
+    }, 150)
   })
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") setMenuOpen(false)
   })
+
+  placeMenu()
 }
 
 document.addEventListener("DOMContentLoaded", () => {

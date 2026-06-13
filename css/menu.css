@@ -58,6 +58,31 @@ body.menu-open .icon-menu::after {
   transform: translateY(-50%) rotate(-45deg);
 }
 
+@media (width > 767px) {
+  .menu {
+    position: static;
+    transform: none;
+    opacity: 1;
+    width: auto;
+    height: auto;
+    max-height: none;
+    padding: 0;
+    background-color: transparent;
+    overflow: visible;
+  }
+
+  .menu__list {
+    flex-wrap: nowrap;
+    gap: clamp(0.5rem, 2vw, 2.125rem);
+  }
+
+  .menu__link {
+    color: inherit;
+    white-space: nowrap;
+    font-size: clamp(0.75rem, 1.15vw, 1rem);
+  }
+}
+
 @media (width <= 767px) {
   .header__container {
     display: flex;
@@ -78,6 +103,7 @@ body.menu-open .icon-menu::after {
     flex-shrink: 0;
     margin-left: auto;
     order: 2;
+    z-index: 101;
   }
 
   .header__logo {
@@ -88,52 +114,87 @@ body.menu-open .icon-menu::after {
     position: fixed;
     top: 0;
     right: 0;
-    width: min(300px, 85vw);
-    height: 100vh;
-    height: 100dvh;
-    padding: 96px 28px 28px;
+    left: auto;
+    width: min(300px, 100vw);
+    height: auto;
+    max-height: none;
+    padding: 0 20px 24px;
     background-color: #2f2f2f;
     color: #ffffff;
     transform: translateX(100%);
-    transition: transform 0.3s ease;
-    z-index: 99;
-    overflow-y: auto;
+    opacity: 0;
+    transition:
+      transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      padding-top 0.4s ease,
+      opacity 0.3s ease;
+    z-index: 100;
+    overflow: hidden;
+    overscroll-behavior: contain;
+    box-sizing: border-box;
+    will-change: transform, max-height;
   }
 
   .menu__list {
     flex-direction: column;
     align-items: flex-start;
-    row-gap: 24px;
+    row-gap: clamp(1rem, 5vw, 1.5rem);
     column-gap: 0;
   }
 
   .menu__link {
-    font-size: 18px;
+    font-size: clamp(1rem, 4.5vw, 1.125rem);
     color: #ffffff;
+    white-space: nowrap;
   }
 
   .menu-overlay {
     position: fixed;
-    inset: 0;
-    z-index: 98;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    z-index: 99;
+    display: block;
+    visibility: hidden;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    pointer-events: none;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
   }
 
   body.menu-open {
     overflow: hidden;
   }
 
-  body.menu-open .intro {
-    overflow: visible;
+  body.menu-open .header {
+    z-index: 102;
+  }
+
+  body.menu-open .icon-menu {
+    z-index: 103;
+    color: #ffffff;
   }
 
   body.menu-open .menu {
     transform: translateX(0);
+    opacity: 1;
+    overflow-y: auto;
   }
 
   body.menu-open .menu-overlay {
-    display: block;
+    visibility: visible;
     opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (width <= 320px) {
+  .menu {
+    padding-inline: 16px;
+    padding-bottom: 16px;
+  }
+
+  .menu__list {
+    row-gap: 0.75rem;
   }
 }
