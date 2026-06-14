@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/* Overlay и кнопка бургера — на всех страницах */
 .menu-overlay {
   display: none;
 }
@@ -58,8 +59,9 @@ body.menu-open .icon-menu::after {
   transform: translateY(-50%) rotate(-45deg);
 }
 
+/* Десктопное меню — не для about (там стили в about.css) */
 @media (width > 767px) {
-  .menu {
+  body:not(.page-about) .menu {
     position: static;
     transform: none;
     opacity: 1;
@@ -71,12 +73,12 @@ body.menu-open .icon-menu::after {
     overflow: visible;
   }
 
-  .menu__list {
+  body:not(.page-about) .menu__list {
     flex-wrap: nowrap;
     gap: clamp(0.5rem, 2vw, 2.125rem);
   }
 
-  .menu__link {
+  body:not(.page-about) .menu__link {
     color: inherit;
     white-space: nowrap;
     font-size: clamp(0.75rem, 1.15vw, 1rem);
@@ -84,13 +86,14 @@ body.menu-open .icon-menu::after {
 }
 
 @media (width <= 767px) {
-  .header__container {
+  /* Раскладка header — не для about */
+  body:not(.page-about) .header__container {
     display: flex;
     align-items: center;
     padding-inline: 26px;
   }
 
-  .header__body {
+  body:not(.page-about) .header__body {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -98,18 +101,23 @@ body.menu-open .icon-menu::after {
     width: 100%;
   }
 
+  /* Бургер — на всех страницах */
   .icon-menu {
     display: block;
     flex-shrink: 0;
-    margin-left: auto;
-    order: 2;
     z-index: 101;
   }
 
-  .header__logo {
+  body:not(.page-about) .icon-menu {
+    margin-left: auto;
+    order: 2;
+  }
+
+  body:not(.page-about) .header__logo {
     order: 1;
   }
 
+  /* Мобильная панель меню — бургер */
   .menu {
     position: fixed;
     top: 0;

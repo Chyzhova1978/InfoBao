@@ -26,55 +26,81 @@ body {
 }
 
 [class*="__container"] {
-  max-width: 1130px;
-  margin: 0 auto;
+   max-width: 990px;
+   padding-inline: 15px;
+   margin: 0 auto;
 }
 
-/* header */
+/* header  */
+.header {
+   position: relative;
+   width: 100%;
+   z-index: 2;
+   color: #000;
+}
+
 .header__container {
+   max-width: 1134px;
+}
+
+.header__body {
    display: flex;
    justify-content: space-between;
-   align-items: center;
-   padding-top: 29px;
-   padding-bottom: 135px;
+   align-items: start;
+   padding-top: clamp(0.75rem, 0.422rem + 1.64vw, 1.438rem);
+   padding-bottom: clamp(0.75rem, -2.272rem + 15.11vw, 8.438rem);
 }
- 
+
 .header__logo {
-   font-size: clamp(24px, 2.3vw, 36px);
+   font-size: clamp(1.25rem, 0.898rem + 1.76vw, 2.25rem);
 }
- 
+
 .header a {
    transition: opacity 0.2s ease;
-}
-  
+ }
+ 
 .header a:hover {
    opacity: 0.75;
 }
- 
-.icon-menu {
-   display: none;
-}
- 
+
 .menu__list {
    display: flex;
    align-items: center;
-   flex-wrap: wrap;
-   column-gap: 43px;
+   flex-wrap: nowrap;
+   gap: clamp(0.5rem, 2vw, 2.125rem);
 }
- 
+
 .menu__link {
-   font-size: 14px;
+   font-size: clamp(0.875rem, 0.826rem + 0.25vw, 1rem);
+   white-space: nowrap;
    transition: color 0.2s ease;
 }
- 
+
 .menu__link:hover {
    text-decoration: underline;
+}
+
+
+@media (width <= 767px) {
+  .header__body {
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .icon-menu {
+    margin-left: auto;
+    flex-shrink: 0;
+  }
 }
 
 /* about */
 .about__container {
    max-width: 1000px;
-   margin-bottom: 108px;
+}
+
+.about__body {
+   margin-bottom: clamp(3.125rem, 1.419rem + 8.53vw, 6.75rem);
    display: flex;
    justify-content: center;
    border-top: 1px solid #727070;
@@ -82,8 +108,8 @@ body {
 }
 
 .about__content {
-   padding-top: 71px;
-   padding-bottom: 146px;
+   padding-top: clamp(1.875rem, 0.669rem + 6.03vw, 4.438rem);
+   padding-bottom: clamp(1.875rem, -1.537rem + 17.06vw, 9.125rem);
 }
 
 .about__title {
@@ -93,8 +119,8 @@ body {
 
 .about__info {
    max-width: 740px;
-   margin-top: 96px;
-   margin-bottom: 96px;
+   margin-top: clamp(1.25rem, -0.985rem + 11.18vw, 6rem);
+   margin-bottom: clamp(1.25rem, -0.985rem + 11.18vw, 6rem);
    font-size: 14px;
    text-align: center;
 }
@@ -108,69 +134,64 @@ body {
 .footer {
    background-color: #2f2f2f;
    color: #ffffff;
-   padding-top: 45px;
-   padding-bottom: 28px;
 }
 
-.footer__container {
-   max-width: 1000px;
+.footer__body {
+   padding-top: clamp(1.875rem, 1.427rem + 2.24vw, 2.813rem);
+   padding-bottom: 28px;  
 }
- 
+
 .footer__top {
-   border-top: 1px solid #cdcaca;
-   width: 1000px;
-   max-width: 100%;
-   margin-inline: auto;
-   padding-top: 28px;
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr;
+  border-top: 1px solid #cdcaca;
+  padding-top: 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
- 
+
 .footer__column {
    text-align: center;
-   padding-inline: 24px;
+   padding-inline: clamp(0rem, -0.716rem + 3.58vw, 1.5rem);
 }
- 
+
 .footer__column:not(:first-child) {
    border-left: 1px solid #a09f9f;
 }
- 
+
 .footer__title {
    font-size: 18px;
    margin-top: 7px;
    margin-bottom: 25px;
 }
- 
+
 .footer__list {
    font-size: 14px;
 }
- 
+
 .footer__list li + li {
    margin-top: 20px;
    margin-bottom: 34px;
 }
- 
+
 .footer__address {
    margin-bottom: 19px;
    font-size: 14px;
 }
- 
+
 .footer__phone {
    display: inline-block;
    margin-bottom: 60px;
    font-size: 14px;
 }
- 
+
 .footer__cta {
    font-size: 18px;
 }
- 
+
 .footer__email {
    display: inline-block;
    margin-bottom: 25px;
-   font-size: 14px;
 }
- 
+
 .footer__bottom {
    border-top: 1px solid #a09f9f;
    margin-top: 33px;
@@ -179,19 +200,52 @@ body {
    justify-content: space-between;
    align-items: center;
 }
- 
+
 .footer__logo {
    font-size: clamp(20px, 3.2vw, 24px);
 }
- 
+
 .footer__copy {
    font-size: 13px;
 }
- 
+
 .footer a {
    transition: opacity 0.2s ease;
 }
- 
+
 .footer a:hover {
    opacity: 0.75;
+}
+
+
+@media (width <= 991px) {
+   .footer__title {
+      font-size: 30px;
+   }
+
+   .footer__cta {
+      font-size: 17px;
+   }
+
+   .footer__copy {
+      font-size: 16px;
+   }
+}
+
+@media (width <= 640px) {
+   .footer__top {
+      grid-template-columns: 1fr;
+   }
+
+   .footer__column:not(:first-child) {
+      border-left: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.35);
+      padding-top: 24px;
+      padding-bottom: 24px;
+   }
+   
+   .footer__bottom {
+      flex-direction: column;
+      text-align: center;
+   }
 }
