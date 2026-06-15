@@ -81,7 +81,7 @@ body.menu-open .icon-menu::after {
   body:not(.page-about) .menu__link {
     color: inherit;
     white-space: nowrap;
-    font-size: clamp(0.75rem, 1.15vw, 1rem);
+    font-size: clamp(0.875rem, 0.815rem + 0.3vw, 1rem);
   }
 }
 
@@ -174,12 +174,8 @@ body.menu-open .icon-menu::after {
     overflow: hidden;
   }
 
-  body.menu-open .header {
-    z-index: 102;
-  }
-
   body.menu-open .icon-menu {
-    z-index: 103;
+    z-index: 104;
     color: #ffffff;
   }
 

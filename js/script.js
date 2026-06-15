@@ -62,7 +62,8 @@ function initBurgerMenu() {
   const headerBody = document.querySelector(".header__body")
   const headerContainer = document.querySelector(".header__container")
   const menuHome = headerBody || headerContainer
-  if (!menuButton || !menu) return
+  const buttonHome = menuButton ? menuButton.parentElement : null
+  if (!menuButton || !menu || !buttonHome) return
 
   if (overlay && overlay.parentElement !== document.body) {
     document.body.append(overlay)
@@ -70,6 +71,7 @@ function initBurgerMenu() {
 
   let resizeTimer = null
   let isClosing = false
+  let buttonPlaceholder = null
 
   const resetMobileMenuLayout = () => {
     menu.style.removeProperty("height")
@@ -84,6 +86,59 @@ function initBurgerMenu() {
     }
   }
 
+  const syncMenuButtonPosition = () => {
+    if (menuButton.parentElement !== document.body) return
+
+    const header = document.querySelector(".header")
+    if (!header) return
+
+    const headerRect = header.getBoundingClientRect()
+    const btnWidth = menuButton.offsetWidth || 28
+    const container = document.querySelector(".header__container")
+    const bodyEl = document.querySelector(".header__body")
+    const paddingRight = container
+      ? parseFloat(getComputedStyle(container).paddingRight)
+      : 15
+    const paddingTop = bodyEl
+      ? parseFloat(getComputedStyle(bodyEl).paddingTop)
+      : 12
+
+    menuButton.style.position = "fixed"
+    menuButton.style.top = `${headerRect.top + paddingTop}px`
+    menuButton.style.left = `${headerRect.right - paddingRight - btnWidth}px`
+    menuButton.style.zIndex = "104"
+    menuButton.style.margin = "0"
+  }
+
+  const floatMenuButton = () => {
+    if (menuButton.parentElement === document.body) {
+      syncMenuButtonPosition()
+      return
+    }
+
+    if (!buttonPlaceholder) {
+      buttonPlaceholder = document.createComment("icon-menu-placeholder")
+      buttonHome.insertBefore(buttonPlaceholder, menuButton)
+    }
+
+    document.body.append(menuButton)
+    syncMenuButtonPosition()
+  }
+
+  const restoreMenuButton = () => {
+    if (!buttonPlaceholder || menuButton.parentElement !== document.body) return
+
+    buttonHome.insertBefore(menuButton, buttonPlaceholder)
+    buttonPlaceholder.remove()
+    buttonPlaceholder = null
+
+    menuButton.style.removeProperty("position")
+    menuButton.style.removeProperty("top")
+    menuButton.style.removeProperty("left")
+    menuButton.style.removeProperty("z-index")
+    menuButton.style.removeProperty("margin")
+  }
+
   const placeMenu = () => {
     if (window.innerWidth <= 767) {
       if (menu.parentElement !== document.body) {
@@ -95,6 +150,7 @@ function initBurgerMenu() {
     document.body.classList.remove("menu-open")
     isClosing = false
     resetMobileMenuLayout()
+    restoreMenuButton()
 
     if (menuHome && menu.parentElement !== menuHome) {
       menuHome.append(menu)
@@ -119,18 +175,22 @@ function initBurgerMenu() {
       overlay.style.height = `${panelHeight}px`
       overlay.style.maxHeight = `${panelHeight}px`
     }
+
+    syncMenuButtonPosition()
   }
 
   const openMenu = () => {
     if (isClosing || window.innerWidth > 767) return
 
     placeMenu()
+    floatMenuButton()
     updateMobileMenuLayout()
     requestAnimationFrame(() => {
       document.body.classList.add("menu-open")
       menuButton.setAttribute("aria-expanded", "true")
       menuButton.setAttribute("aria-label", "Close menu")
       if (overlay) overlay.setAttribute("aria-hidden", "false")
+      syncMenuButtonPosition()
     })
   }
 
@@ -155,6 +215,7 @@ function initBurgerMenu() {
 
       isClosing = false
       resetMobileMenuLayout()
+      restoreMenuButton()
       menu.removeEventListener("transitionend", onCloseEnd)
     }
 
