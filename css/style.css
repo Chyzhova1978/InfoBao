@@ -535,7 +535,7 @@ body {
 
 .footer__bottom {
    border-top: 1px solid #a09f9f;
-   margin-top: 33px;
+   margin-top: clamp(0rem, -0.971rem + 4.85vw, 2.063rem);
    padding-top: 20px;
    display: flex;
    justify-content: space-between;
