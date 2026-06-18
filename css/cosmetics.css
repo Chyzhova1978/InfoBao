@@ -26,8 +26,8 @@ body {
 }
  
 [class*="__container"] {
-   max-width: 1000px;
-   padding-inline: 15px;
+   max-width: 62.5rem;
+   padding-inline: 0.9375rem;
    margin: 0 auto;
 }
  
@@ -40,7 +40,7 @@ body {
 }
  
 .header__container {
-   max-width: 1134px;
+   max-width: 70.875rem;
 }
  
 .header__body {
@@ -84,7 +84,7 @@ body {
    .header__body {
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 1rem;
    }
  
    .icon-menu {
@@ -107,17 +107,17 @@ body {
 .cosmetics__title {
    margin-bottom: clamp(0.75rem, -1.221rem + 9.85vw, 4.938rem);
    text-align: center;
-   font-size: 24px;
+   font-size: 1.5rem;
 }
 
 .cosmetics__text {
-   margin-top: 31px;
-   font-size: 16px;
+   margin-top: 1.9375rem;
+   font-size: 1rem;
 }
 
 .cosmetics__subtitle {
    margin-bottom: clamp(1.25rem, 0.515rem + 3.68vw, 2.813rem);
-   font-size: 20px;
+   font-size: 1.25rem;
 }
 
 .cosmetics__wrapper {
@@ -135,12 +135,12 @@ body {
 
 .cosmetics__list {
    display: flex;
-   gap: clamp(45px, calc(18.85vw - 45.5px), 143px);
+   gap: clamp(2.8125rem, calc(18.85vw - 2.8438rem), 8.9375rem);
 }
 
 .cosmetics__item {
    text-align: center;
-   font-size: 14px;   
+   font-size: 0.875rem;   
 }
 
 .cosmetics__item:hover {
@@ -152,7 +152,7 @@ body {
    display: flex;
    flex-wrap: wrap;
    justify-content: center;
-   column-gap: clamp(30px, calc(50.6vw - 358px), 148px);
+   column-gap: clamp(1.875rem, calc(50.6vw - 22.375rem), 9.25rem);
 }
 
 .cosmetics__card {
@@ -164,38 +164,38 @@ body {
 }
 
 .cosmetics__card h3 {
-   font-size: 20px;
+   font-size: 1.25rem;
 }
 
 .cosmetics__button {
    margin-top: clamp(2.5rem, 1.559rem + 4.71vw, 4.5rem);
-   font-size: 14px;
+   font-size: 0.875rem;
 }
 
 @media (width <= 767px) {
    .cosmetics__gallery {
       flex-direction: column;
-      column-gap: 30px;
+      column-gap: 1.875rem;
    }
 
    .cosmetics__item {
       width: 100%;
-      max-width: 500px;
+      max-width: 31.25rem;
    }
 
    .cosmetics__card {
       display: block;
       width: 100%;
-      max-width: 500px;
+      max-width: 31.25rem;
    }
 
    .cosmetics__card:not(:last-child) {
-      margin-bottom: 30px;
+      margin-bottom: 1.875rem;
    } 
 
    .cosmetics__img {
       width: 100%;
-        max-width: 500px;
+        max-width: 31.25rem;
         display: block;
    }
 }
@@ -209,12 +209,12 @@ body {
 
 .footer__container {
    padding-top: clamp(1.875rem, 1.427rem + 2.24vw, 2.813rem);
-   padding-bottom: 28px;  
+   padding-bottom: 1.75rem;  
 }
 
 .footer__top {
    border-top: 1px solid #cdcaca;
-   padding-top: 28px;
+   padding-top: 1.75rem;
    display: grid;
    grid-template-columns: 1fr 1fr 1fr;
 }
@@ -229,55 +229,55 @@ body {
 }
 
 .footer__title {
-   font-size: 18px;
-   margin-top: 7px;
-   margin-bottom: 25px;
+   font-size: 1.125rem;
+   margin-top: 0.4375rem;
+   margin-bottom: 1.5625rem;
 }
 
 .footer__list {
-   font-size: 14px;
+   font-size: 0.875rem;
 }
 
 .footer__list li + li {
-   margin-top: 20px;
-   margin-bottom: 34px;
+   margin-top: 1.25rem;
+   margin-bottom: 2.125rem;
 }
 
 .footer__address {
-   margin-bottom: 19px;
-   font-size: 14px;
+   margin-bottom: 1.1875rem;
+   font-size: 0.875rem;
 }
 
 .footer__phone {
    display: inline-block;
-   margin-bottom: 60px;
-   font-size: 14px;
+   margin-bottom: 3.75rem;
+   font-size: 0.875rem;
 }
 
 .footer__cta {
-   font-size: 18px;
+   font-size: 1.125rem;
 }
 
 .footer__email {
    display: inline-block;
-   margin-bottom: 25px;
+   margin-bottom: 1.5625rem;
 }
 
 .footer__bottom {
    border-top: 1px solid #a09f9f;
    margin-top: clamp(0rem, -0.971rem + 4.85vw, 2.063rem);
-   padding-top: 20px;
+   padding-top: 1.25rem;
    display: flex;
    justify-content: space-between;
    align-items: center;
 }
 
 .footer__logo {
-   font-size: clamp(20px, 3.2vw, 24px);
+   font-size: clamp(1.25rem, 3.2vw, 1.5rem);
 }
 
 .footer__copy {
-   font-size: 13px;
+   font-size: 0.8125rem;
 }
 
 .footer a {
@@ -291,15 +291,15 @@ body {
 
 @media (width <= 991px) {
    .footer__title {
-      font-size: 30px;
+      font-size: 1.875rem;
    }
 
    .footer__cta {
-      font-size: 17px;
+      font-size: 1.0625rem;
    }
 
    .footer__copy {
-      font-size: 16px;
+      font-size: 1rem;
    }
 }
 
@@ -311,8 +311,8 @@ body {
    .footer__column:not(:first-child) {
       border-left: 0;
       border-top: 1px solid rgba(255, 255, 255, 0.35);
-      padding-top: 24px;
-      padding-bottom: 24px;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
    }
    
    .footer__bottom {
@@ -325,12 +325,12 @@ body {
    .cosmetics__list {
       width: 100%;
       max-width: 100%;
-      margin-inline: -15px;
-      padding-inline: 15px;
+      margin-inline: -0.9375rem;
+      padding-inline: 0.9375rem;
       overflow-x: auto;
       flex-wrap: nowrap;
       justify-content: flex-start;
-      gap: 45px;
+      gap: 2.8125rem;
       -webkit-overflow-scrolling: touch;
       overscroll-behavior-x: contain;
       scrollbar-width: none;

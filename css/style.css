@@ -25,13 +25,13 @@ body {
 }
 
 [class*="__container"] {
-   max-width: 990px;
-   padding-inline: 15px;
+   max-width: 61.875rem;
+   padding-inline: 0.9375rem;
    margin: 0 auto;
 }
 
 .button {
-   padding: 10px 50px;
+   padding: 0.625rem 3.125rem;
    border: 1px solid #000;
    display: inline-block;
    transition: background-color 0.3s, color 0.3s;
@@ -145,7 +145,7 @@ body {
 }
 
 .hero__body {
-   margin-left: 517px;
+   margin-left: 32.3125rem;
    text-align: center;
    padding-top: clamp(3.125rem, -4.338rem + 37.31vw, 18.75rem);
 }
@@ -156,14 +156,14 @@ body {
 }
 
 .hero__text {
-   font-size: 14px;
-   max-width: 540px;
+   font-size: 0.875rem;
+   max-width: 33.75rem;
    margin-bottom: clamp(0.625rem, 0.028rem + 2.99vw, 1.875rem);
 }
 
 .hero__button {
-   font-size: 13px;
-   padding: 8px 14px 9px 13px;
+   font-size: 0.8125rem;
+   padding: 0.5rem 0.875rem 0.5625rem 0.8125rem;
    border: 1px solid #ffffff;
    transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -181,7 +181,7 @@ body {
 
 @media (width <= 991px) {
    .hero__content {
-      max-width: 480px;
+      max-width: 30rem;
       padding-right: 0;
    } 
 }
@@ -227,7 +227,7 @@ body {
 }
 
 .about__info {
-   max-width: 450px;
+   max-width: 28.125rem;
 }
 
 .about__text p:last-child {
@@ -270,7 +270,7 @@ body {
    .about__picture {
       order: 2;
       width: 100%;
-      max-width: 317px;
+      max-width: 19.8125rem;
       margin-top: clamp(1.25rem, 0.5rem + 3.75vw, 2.5rem);
    }
 
@@ -310,17 +310,17 @@ body {
 
 .cosmetics__text {
    margin-top: clamp(0.313rem, -0.464rem + 3.88vw, 1.938rem);
-   font-size: 16px;
+   font-size: 1rem;
 }
 
 .cosmetics__list {
-   width: 100px;   
+   width: 6.25rem;   
    display: flex;
    flex-direction: column;
 }
 
 .cosmetics__list li {
-   padding: 12px 16px 10px;
+   padding: 0.75rem 1rem 0.625rem;
 }
 
 .cosmetics__item {
@@ -446,12 +446,12 @@ body {
 }
 
 .product__subtitle {
-   font-size: 28px;
-   margin-bottom: 115px;
+   font-size: 1.75rem;
+   margin-bottom: 7.1875rem;
 }
 
 .product__content span {
-   font-size: 17px;
+   font-size: 1.0625rem;
 }
 
 .product__button {
@@ -466,7 +466,7 @@ body {
    }
 
    .product__img {
-      width: 500px;
+      width: 31.25rem;
       display: block;
   }
 }
@@ -479,12 +479,12 @@ body {
 
 .footer__body {
    padding-top: clamp(1.875rem, 1.427rem + 2.24vw, 2.813rem);
-   padding-bottom: 28px;  
+   padding-bottom: 1.75rem;  
 }
 
 .footer__top {
   border-top: 1px solid #cdcaca;
-  padding-top: 28px;
+  padding-top: 1.75rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
@@ -499,55 +499,55 @@ body {
 }
 
 .footer__title {
-   font-size: 18px;
-   margin-top: 7px;
-   margin-bottom: 25px;
+   font-size: 1.125rem;
+   margin-top: 0.4375rem;
+   margin-bottom: 1.5625rem;
 }
 
 .footer__list {
-   font-size: 14px;
+   font-size: 0.875rem;
 }
 
 .footer__list li + li {
-   margin-top: 20px;
-   margin-bottom: 34px;
+   margin-top: 1.25rem;
+   margin-bottom: 2.125rem;
 }
 
 .footer__address {
-   margin-bottom: 19px;
-   font-size: 14px;
+   margin-bottom: 1.1875rem;
+   font-size: 0.875rem;
 }
 
 .footer__phone {
    display: inline-block;
-   margin-bottom: 60px;
-   font-size: 14px;
+   margin-bottom: 3.75rem;
+   font-size: 0.875rem;
 }
 
 .footer__cta {
-   font-size: 18px;
+   font-size: 1.125rem;
 }
 
 .footer__email {
    display: inline-block;
-   margin-bottom: 25px;
+   margin-bottom: 1.5625rem;
 }
 
 .footer__bottom {
    border-top: 1px solid #a09f9f;
    margin-top: clamp(0rem, -0.971rem + 4.85vw, 2.063rem);
-   padding-top: 20px;
+   padding-top: 1.25rem;
    display: flex;
    justify-content: space-between;
    align-items: center;
 }
 
 .footer__logo {
-   font-size: clamp(20px, 3.2vw, 24px);
+   font-size: clamp(1.25rem, 3.2vw, 1.5rem);
 }
 
 .footer__copy {
-   font-size: 13px;
+   font-size: 0.8125rem;
 }
 
 .footer a {
@@ -561,15 +561,15 @@ body {
 
 @media (width <= 991px) {
    .footer__title {
-      font-size: 30px;
+      font-size: 1.875rem;
    }
 
    .footer__cta {
-      font-size: 17px;
+      font-size: 1.0625rem;
    }
 
    .footer__copy {
-      font-size: 16px;
+      font-size: 1rem;
    }
 }
 
@@ -581,8 +581,8 @@ body {
    .footer__column:not(:first-child) {
       border-left: 0;
       border-top: 1px solid rgba(255, 255, 255, 0.35);
-      padding-top: 24px;
-      padding-bottom: 24px;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
    }
    
    .footer__bottom {

@@ -10,48 +10,45 @@ function initSameProductsSlider() {
   const slides = Array.from(track.querySelectorAll(".same-products__slide"))
   if (!slides.length) return
 
+  const mobileQuery = window.matchMedia("(width <= 767px)")
   let currentPage = 0
   const totalPages = slides.length
   let resizeTimer = null
-  const MOBILE_BREAKPOINT = 767
-
-  const isMobile = () => window.innerWidth <= MOBILE_BREAKPOINT
-
   const clampPage = (page) => Math.max(0, Math.min(page, totalPages - 1))
 
-  const initSlideDragScroll = (slide) => {
+  const initDragScroll = (element) => {
     let isDragging = false
     let startX = 0
     let scrollLeftStart = 0
 
-    slide.querySelectorAll("img").forEach((img) => {
+    element.querySelectorAll("img").forEach((img) => {
       img.draggable = false
     })
 
-    const canScroll = () => slide.scrollWidth > slide.clientWidth + 1
+    const canScroll = () => element.scrollWidth > element.clientWidth + 1
 
     const onPointerMove = (event) => {
       if (!isDragging) return
       event.preventDefault()
-      slide.scrollLeft = scrollLeftStart - (event.clientX - startX)
+      element.scrollLeft = scrollLeftStart - (event.clientX - startX)
     }
 
     const stopDragging = () => {
       if (!isDragging) return
       isDragging = false
-      slide.classList.remove("is-dragging")
+      element.classList.remove("is-dragging")
       document.removeEventListener("pointermove", onPointerMove)
       document.removeEventListener("pointerup", stopDragging)
       document.removeEventListener("pointercancel", stopDragging)
     }
 
-    slide.addEventListener("pointerdown", (event) => {
+    element.addEventListener("pointerdown", (event) => {
       if (event.pointerType === "touch" || event.button !== 0 || !canScroll()) return
 
       isDragging = true
-      slide.classList.add("is-dragging")
+      element.classList.add("is-dragging")
       startX = event.clientX
-      scrollLeftStart = slide.scrollLeft
+      scrollLeftStart = element.scrollLeft
 
       document.addEventListener("pointermove", onPointerMove)
       document.addEventListener("pointerup", stopDragging)
@@ -59,7 +56,7 @@ function initSameProductsSlider() {
       event.preventDefault()
     })
 
-    slide.addEventListener("wheel", (event) => {
+    element.addEventListener("wheel", (event) => {
       if (!canScroll()) return
 
       const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY)
@@ -69,18 +66,14 @@ function initSameProductsSlider() {
       if (delta === 0) return
 
       event.preventDefault()
-      slide.scrollLeft += delta
+      element.scrollLeft += delta
     }, { passive: false })
   }
 
-  slides.forEach(initSlideDragScroll)
+  slides.forEach(initDragScroll)
+  initDragScroll(slider)
 
   function updateDots() {
-    if (isMobile()) {
-      dotsWrap.innerHTML = ""
-      return
-    }
-
     dotsWrap.innerHTML = ""
     for (let i = 0; i < totalPages; i += 1) {
       const dot = document.createElement("button")
@@ -93,24 +86,17 @@ function initSameProductsSlider() {
   }
 
   function updateActiveDot() {
-    if (isMobile()) return
-
     const dots = dotsWrap.querySelectorAll(".same-products__dot")
     dots.forEach((dot, index) => {
       dot.classList.toggle("same-products__dot--active", index === currentPage)
     })
   }
 
-  function goToPage(page) {
-    if (isMobile()) {
-      currentPage = 0
-      track.style.transform = "none"
-      slides.forEach((slide) => {
-        slide.scrollLeft = 0
-      })
-      return
-    }
+  function getPageWidth() {
+    return slider.clientWidth || 1
+  }
 
+  function goToPageDesktop(page) {
     currentPage = clampPage(page)
     track.style.transform = `translateX(-${currentPage * 100}%)`
     slides.forEach((slide) => {
@@ -119,20 +105,44 @@ function initSameProductsSlider() {
     updateActiveDot()
   }
 
+  function goToPageMobile(page) {
+    currentPage = clampPage(page)
+    track.style.transform = "none"
+    slider.scrollLeft = currentPage * getPageWidth()
+    updateActiveDot()
+  }
+
+  function goToPage(page) {
+    if (mobileQuery.matches) goToPageMobile(page)
+    else goToPageDesktop(page)
+  }
+
+  function onSliderScroll() {
+    if (!mobileQuery.matches) return
+
+    const page = clampPage(Math.round(slider.scrollLeft / getPageWidth()))
+    if (page === currentPage) return
+
+    currentPage = page
+    updateActiveDot()
+  }
+
   function recalcSlider() {
-    updateDots()
-
-    if (isMobile()) {
-      goToPage(0)
-      return
-    }
-
     currentPage = clampPage(currentPage)
-    goToPage(currentPage)
+
+    if (mobileQuery.matches) {
+      track.style.transform = "none"
+      goToPageMobile(currentPage)
+    } else {
+      slider.scrollLeft = 0
+      goToPageDesktop(currentPage)
+    }
   }
 
   updateDots()
   recalcSlider()
+
+  slider.addEventListener("scroll", onSliderScroll, { passive: true })
 
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimer)
