@@ -193,15 +193,17 @@ body {
 }
 
 .same-products__slider {
+   margin-inline: -15px;
    overflow: hidden;
 }
 
 .same-products__track {
    display: flex;
-   transition: transform 0.45s ease;
+   transition: transform 0.45s ease;   
 }
 
 .same-products__slide {
+   
    min-width: 100%;
    display: flex;
    flex-wrap: nowrap;
@@ -264,6 +266,7 @@ body {
 }
 
 .footer__container {
+   max-width: 1000px;
    padding-top: clamp(1.875rem, 1.427rem + 2.24vw, 2.813rem);
    padding-bottom: 28px;  
 }
